@@ -1,2 +1,4 @@
 public/.git/bit
 public/.git*
+public/bit/*
+node_modules

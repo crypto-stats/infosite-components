@@ -7,11 +7,11 @@ interface Size {
 
 
 function useWindowSize() {
-
-  const [windowSize, setWindowSize] = useState({
+  const [windowSize, setWindowSize] = useState<Size>({
     width: undefined,
     height: undefined,
   });
+
   useEffect(() => {
     function handleResize() {
       setWindowSize({
@@ -27,8 +27,7 @@ function useWindowSize() {
 }
 
 export function Header(props: { siteName: string}) {
-
-  const size:Size = useWindowSize()
+  const size: Size = useWindowSize()
 
   const allSites = [
     { name: 'cryptofees.info', url: 'https://cryptofees.info/' },

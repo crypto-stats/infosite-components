@@ -11,15 +11,9 @@
 {
     "header": {
         "scope": "cryptostats.header",
-        "version": "0.0.5",
+        "version": "0.0.6",
         "mainFile": "index.ts",
-        "rootDir": "header",
-        "config": {
-            "teambit.react/react": {},
-            "teambit.envs/envs": {
-                "env": "teambit.react/react"
-            }
-        }
+        "rootDir": "header"
     },
     "$schema-version": "15.0.0"
 }
