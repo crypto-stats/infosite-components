@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import classes from './Header.module.css';
 
 interface Size {
   width: number | undefined;
@@ -47,8 +48,8 @@ export function Header(props: { siteName: string}) {
     const index = allSites.indexOf(currentSite);
     allSites.splice(index, 1);
   }
-  let mainSites: { name: string; url: string }[];
-  let extraSites: { name: string; url: string }[];
+  let mainSites: { name: string; url: string }[] = [];
+  let extraSites: { name: string; url: string }[] = [];
 
   if (size.width >= 330) {
     mainSites = allSites.slice(0, 1);
@@ -72,24 +73,24 @@ export function Header(props: { siteName: string}) {
 
   return (
     <header>
-      <ul className="header-links">
-        <li className="header-link">
+      <ul className={classes["header-links"]}>
+        <li className={classes["header-link"]}>
           <div>{currentSite?.name}</div>
         </li>
         {mainSites?.map((el: { name: string; url: string }, index) => {
           return (
-            <li key={index} className="header-link">
+            <li key={index} className={classes["header-link"]}>
               <a href={el?.url}>{el?.name}</a>
             </li>
           );
         })}
-        <li className="header-link">
+        <li className={classes["header-link"]}>
           <a>More</a>
 
-          <ul className="dropdown">
+          <ul className={classes["dropdown"]}>
             {extraSites?.map((el: { name: string; url: string }, index) => {
               return (
-                <li key={index} className="header-link">
+                <li key={index} className={classes["header-link"]}>
                   <a href={el?.url}>{el?.name}</a>
                 </li>
               );
@@ -97,79 +98,6 @@ export function Header(props: { siteName: string}) {
           </ul>
         </li>
       </ul>
-
-      <style>{`
-        header {
-          display: flex;
-          justify-content: center;
-        }
-        .header-links {
-          display: flex;
-          margin: 0;
-          padding: 0;
-          align-items: center;
-        }
-
-        .header-link {
-          list-style: none;
-          position: relative;
-        }
-
-        .header-link > a,
-        .header-link > div {
-          padding: 8px;
-          display: block;
-          border: solid 1px transparent;
-          margin: 0 4px;
-          text-align: center;
-        }
-
-        .header-link > a:hover {
-          border-radius: 3px;
-          border: solid 1px #d0d1d9;
-          text-decoration: none;
-        }
-
-        .dropdown {
-          position: absolute;
-          background: #f9fafc;
-          display: none;
-          right: 0;
-          padding: 4px;
-          border: solid 1px #d0d1d9;
-          border-radius: 4px;
-        }
-
-        .dropdown .header-link a {
-          text-align: right;
-        }
-
-        .header-link:hover .dropdown,
-        .dropdown:hover {
-          display: block;
-        }
-
-        .showable {
-          display: none;
-        }
-
-        @media (max-width: 700px) {
-          .header-link > a,
-          .header-link > div {
-            margin: 0 1px;
-            padding: 4px;
-          }
-
-          .hideable {
-            display: none;
-          }
-
-          .showable {
-            display: block;
-          }
-        }
-
-      `}</style>
     </header>
   );
 }
