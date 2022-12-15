@@ -19,7 +19,6 @@ const HeaderLinks = styled.ul`
 `;
 
 const HeaderLinkUl = styled.ul`
-  list-style: none;
   text-align: right;
 `;
 
@@ -33,30 +32,39 @@ const Dropdown = styled.ul`
   border: solid 1px #d0d1d9;
   border-radius: 4px;
   text-align: right;
+
   &:hover {
     display: block;
   };
 `;
 
 const HeaderLinkLi = styled.li`
-  padding: 8px;
-  display: block;
-  border: solid 1px transparent;
-  margin: 0 4px;
-  text-align: center;
-  @media (max-width: 700px) {
-    margin: 0 1px;
-    padding: 4px;
+  list-style: none;
+
+  & > * {
+    padding: 8px;
+    display: block;
+    border: solid 1px transparent;
+    margin: 0 4px;
+    text-align: center;
+
+    @media (max-width: 700px) {
+      margin: 0 1px;
+      padding: 4px;
+    }
   }
 `;
+
+const HeaderLinkMore = styled(HeaderLinkLi)`
+  &:hover ~ ${Dropdown} {
+    display: block;
+  }
+`
 
 const HeaderLinkA = styled.a`
   @media (max-width: 700px) {
     margin: 0 1px;
     padding: 4px;
-  }
-  &:hover ~ ${Dropdown} {
-    display: block;
   }
 
   &:hover {
@@ -135,7 +143,9 @@ export function Header(props: { siteName: string }) {
   return (
     <HeaderMain>
       <HeaderLinks>
-        <HeaderLinkLi>{currentSite?.name}</HeaderLinkLi>
+        <HeaderLinkLi>
+          <div>{currentSite?.name}</div>
+        </HeaderLinkLi>
         {mainSites?.map((el: { name: string; url: string }, index) => {
           return (
             <HeaderLinkLi key={index}>
@@ -143,7 +153,9 @@ export function Header(props: { siteName: string }) {
             </HeaderLinkLi>
           );
         })}
-        <HeaderLinkA>More</HeaderLinkA>
+        <HeaderLinkMore>
+          <HeaderLinkA>More</HeaderLinkA>
+        </HeaderLinkMore>
         <Dropdown>
           <HeaderLinkUl>
             {extraSites?.map((el: { name: string; url: string }, index) => {

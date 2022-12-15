@@ -3,6 +3,8 @@ import { Header } from './Header';
 
 export const HeaderComp = () => {
   return (
-    <Header siteName="cryptofees.info"/>
+    <div style={{ height: '200px' }}>
+      <Header siteName="cryptofees.info"/>
+    </div>
   );
 }
