@@ -7,6 +7,7 @@ interface Size {
 }
 
 const HeaderMain = styled.header`
+  position: relative;
   display: flex;
   justify-content: center;
 `;
@@ -16,10 +17,7 @@ const HeaderLinks = styled.ul`
   margin: 0;
   padding: 0;
   align-items: center;
-`;
-
-const HeaderLinkUl = styled.ul`
-  text-align: right;
+  width: fit-content;
 `;
 
 const Dropdown = styled.ul`
@@ -27,7 +25,7 @@ const Dropdown = styled.ul`
   background: #f9fafc;
   display: none;
   right: 0;
-  top: 48px;
+  top: 40px;
   padding: 4px;
   border: solid 1px #d0d1d9;
   border-radius: 4px;
@@ -35,7 +33,7 @@ const Dropdown = styled.ul`
 
   &:hover {
     display: block;
-  };
+  }
 `;
 
 const HeaderLinkLi = styled.li`
@@ -46,7 +44,6 @@ const HeaderLinkLi = styled.li`
     display: block;
     border: solid 1px transparent;
     margin: 0 4px;
-    text-align: center;
 
     @media (max-width: 700px) {
       margin: 0 1px;
@@ -59,7 +56,7 @@ const HeaderLinkMore = styled(HeaderLinkLi)`
   &:hover ~ ${Dropdown} {
     display: block;
   }
-`
+`;
 
 const HeaderLinkA = styled.a`
   @media (max-width: 700px) {
@@ -157,7 +154,6 @@ export function Header(props: { siteName: string }) {
           <HeaderLinkA>More</HeaderLinkA>
         </HeaderLinkMore>
         <Dropdown>
-          <HeaderLinkUl>
             {extraSites?.map((el: { name: string; url: string }, index) => {
               return (
                 <HeaderLinkLi key={index}>
@@ -165,7 +161,6 @@ export function Header(props: { siteName: string }) {
                 </HeaderLinkLi>
               );
             })}
-          </HeaderLinkUl>
         </Dropdown>
       </HeaderLinks>
     </HeaderMain>

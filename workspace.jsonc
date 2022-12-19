@@ -39,6 +39,7 @@
     "packageManager": "teambit.dependencies/pnpm",
     "policy": {
       "dependencies": {
+        "file-loader": "6.2.0",
         "styled-components": "5.3.6"
       },
       "peerDependencies": {}

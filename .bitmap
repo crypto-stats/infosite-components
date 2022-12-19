@@ -11,9 +11,15 @@
 {
     "header": {
         "scope": "cryptostats.header",
-        "version": "0.0.6",
+        "version": "0.0.18",
         "mainFile": "index.ts",
         "rootDir": "header"
+    },
+    "sponsor_cta": {
+        "scope": "cryptostats.header",
+        "version": "0.0.15",
+        "mainFile": "index.ts",
+        "rootDir": "sponsor_cta"
     },
     "$schema-version": "15.0.0"
 }
