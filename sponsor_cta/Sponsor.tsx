@@ -6,7 +6,9 @@ const SponsorDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  max-width:600px;
+  max-width: 600px;
+  margin: 0;
+  padding: 0;
 `;
 
 const SponsorTagline = styled.span`
@@ -15,9 +17,11 @@ const SponsorTagline = styled.span`
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin: 0;
+  padding-bottom: 10px;
 `;
 const SponsorImage = styled.img`
-    width: 100%;
+  width: 100%;
 `;
 
 function getSponsor() {
@@ -27,14 +31,14 @@ function getSponsor() {
     url: "",
   });
 
-  const sponsors: { name: string; image: string; url: string }[] = [
+  const sponsors: SponsorData[] = [
     {
       name: "cryptoflows",
       image: "https://i.postimg.cc/9FZpz6Wf/cryptoflows.png",
       url: "https://cryptoflows.info",
     },
     {
-      name: "defi-savor",
+      name: "defi-saver",
       image: "https://i.postimg.cc/q7kCJY7W/defi-savor.png",
       url: "https://defisaver.com/?mtm_campaign=cryptostats-dec2022&mtm_source=cryptostats&mtm_medium=banner",
     },
@@ -42,11 +46,11 @@ function getSponsor() {
 
   useEffect(() => {
     let x = Math.random();
-  
+
     if (x > 0.33) {
       setCurrentSponsor(sponsors[0]);
     }
-  
+
     if (x <= 0.33) {
       setCurrentSponsor(sponsors[1]);
     }
@@ -55,15 +59,36 @@ function getSponsor() {
   return currentSponsor;
 }
 
-export function Sponsor() {
+export interface SponsorData {
+  name: string;
+  image: string;
+  url: string;
+}
+
+export function Sponsor({
+  onSponsorInfo,
+  onSponsorClick,
+}: {
+  onSponsorInfo?: () => void;
+  onSponsorClick?: (data: SponsorData) => void;
+}) {
   const sponsor = getSponsor();
   return (
     <SponsorDiv>
       <SponsorTagline>
-        <p>Supported by</p>
-        <a href="www.cryptofees.info">Learn about our sponsorships</a>
+        <span>Supported by</span>
+        <a
+          onClick={onSponsorInfo}
+          href="https://docs.google.com/document/d/14ZM4GFz8419h9C66aobTeec0VxfjEVcxQXVyIz3Lsgw/edit"
+          target="_blank"
+        >
+          Learn about our sponsorships
+        </a>
       </SponsorTagline>
-      <a href={sponsor.url}>
+      <a
+        onClick={onSponsorClick && (() => onSponsorClick(sponsor))}
+        href={sponsor.url}
+      >
         <SponsorImage src={sponsor.image} />
       </a>
     </SponsorDiv>

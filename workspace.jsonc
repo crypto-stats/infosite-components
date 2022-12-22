@@ -40,6 +40,7 @@
     "policy": {
       "dependencies": {
         "file-loader": "6.2.0",
+        "next-plausible": "3.6.5",
         "styled-components": "5.3.6"
       },
       "peerDependencies": {}
